@@ -1,1 +1,59 @@
+go编译器执行命令：go run helloworld.go
+                go build helloworld.go
+                
+go 基本语法：       var s, sep string//var声明定义了两个string类型的变量s和sep。       
+                   
+                   s += sep + os.Args[i]//是一条赋值语句 ,将s的旧值跟sep与os.Args[i]连接后赋值回s
+                   
+                   for initialization; condition; post {
+                   
+                   //Go语言只有for循环这一种循环语句。for循环有多种形式，其中一种如下所示：
+                    }
+
+
+
+func main() {
+    s, sep := "", ""
+    for _, arg := range os.Args[1:] {//for循环的另一种形式,在某种数据类型的区间（range）上遍历，如字符串或切片
+        s += sep + arg//每次循环迭代，range产生一对值；索引以及在该索引处的元素值。这个例子不需要索引，但range的语法要求,要处理元素,必须处理索引。一种思路是把索引赋值给一个临时变量,如temp,然后忽略它的值，但Go语言不允许使用无用的局部变量（local variables），因为这会导致编译错误。Go语言中这种情况的解决方法是用空标识符（blank identifier），即_（也就是下划线）。
+        sep = " "
+    }
+    fmt.Println(s)
+}
+      
+      
+  //声明一个变量有好几种方式，下面这些都等价：    
+s := ""
+var s string
+var s = ""
+var s string = ""
+                    
+                    
+go常见包与常见库：fmt包，就含有格式化输出、接收输入的函数
+                import "fmt"
+                
+                 fmt.Println("Hello, 世界")
+                 
+                 
+                 
+                 
+                 
+                 os包以跨平台的方式，提供了一些与操作系统交互的函数和变量。程序的命令行参数可从os包的Args变量获取
+                 os.Args的第一个元素，os.Args[0], 是命令本身的名字；其它的元素则是程序启动时传给它的参数。s[m:n]形式的切片表达式，产生从第m个元素到第n-1个元素的切片，下个例子用到的元素包含在os.Args[1:len(os.Args)]切片中。如果省略切片表达式的m或n，会默认传入0或len(s)，因此前面的切片可以简写成os.Args[1:]。
+                 a = [1, 2, 3, 4, 5], a[0:3] = [1, 2, 3]
+                 
+                 import  "os"
+
+                   for i := 1; i < len(os.Args); i++ {
+                   s += sep + os.Args[i]
+                  sep = " "
+                   }
+  
+  
+  
+                  string包：
+                  func main() {//如前文所述，每次循环迭代字符串s的内容都会更新。+=连接原字符串、空格和下个参数，产生新字符串,并把它赋值给s。s原来的内容已经不再使用，将在适当时机对它进行垃圾回收。如果连接涉及的数据量很大，这种方式代价高昂。一种简单且高效的解决方案是使用strings包的Join函数：
+                  fmt.Println(strings.Join(os.Args[1:], " "))//
+                      }
+
 
